@@ -7,7 +7,7 @@ SECRET_KEY = '^-gcdl5u%c41=tz)$-k&if@)ofdmqnolz_5*$^x&%+8%0i-4!!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["hopepsbank.com", "www.hopepsbank.com", "hopepsbank.com", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["hopepsbank.com", "www.hopepsbank.com", "hopepsbank.com", "127.0.0.1", "localhost", "89.38.135.41"]
 
 
 CORS_ALLOWED_ORIGINS = [
