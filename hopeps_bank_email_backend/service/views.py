@@ -40,7 +40,7 @@ class SendEmailView(APIView):
             if success:
                 return Response({"detail": f"Email Sent"})
             else:
-                return Response({"detail": f"Email Sent"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
 
         except (Exception,) as err:
             return Response({"detail": f"{err}"})
