@@ -11,11 +11,6 @@ with open(file=".env", mode="a+") as file:
 
 def main():
     """Run administrative tasks."""
-    if os.getenv("env", "prod") == "dev" or config("env", "prod") == "dev":
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hopeps_bank_email_backend.settings.dev')
-
-    elif os.getenv("env", "dev") == "prod" or config("env", "dev") == "prod":
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hopeps_bank_email_backend.settings.prod')
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hopeps_bank_email_backend.settings')
     try:
