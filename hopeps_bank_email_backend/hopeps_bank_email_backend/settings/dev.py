@@ -21,3 +21,6 @@ CORS_ALLOWED_ORIGINS = [
 API_KEY = config("API_KEY", None)
 EMAIL_TO = config("EMAIL_TO", None)
 EMAIL_FROM = config("EMAIL_FROM", None)
+
+
+print(API_KEY, EMAIL_FROM, EMAIL_TO)

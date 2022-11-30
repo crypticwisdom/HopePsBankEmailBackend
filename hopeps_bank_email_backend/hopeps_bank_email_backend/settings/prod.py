@@ -1,5 +1,5 @@
 from .base import *
-print("******************* Running on Development Environment *********************")
+print("******************* Running on Production Environment *********************")
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '^-gcdl5u%c41=tz)$-k&if@)ofdmqnolz_5*$^x&%+8%0i-4!!'

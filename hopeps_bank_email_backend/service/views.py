@@ -34,9 +34,9 @@ class SendEmailView(APIView):
                     </b>
                 </div>
             """
-
+            print("got here ....")
             success, msg = send_mail(api_key=settings.API_KEY, content=content)
-
+            print("came out clean ....")
             if success:
                 return Response({"detail": f"Email Sent"})
             else:
