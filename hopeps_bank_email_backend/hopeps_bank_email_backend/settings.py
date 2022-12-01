@@ -121,10 +121,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://localhost:8080",
-    "https://www.hopepsbank.com"
+    "https://www.hopepsbank.com",
+    "http://localhost",
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 API_KEY = config("API_KEY", None)
 EMAIL_TO = config("EMAIL_TO", None)
