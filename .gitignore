@@ -1,0 +1,7 @@
+# created by virtualenv automatically
+.env
+venv*
+__pycache__/
+__pycache__/*
+.idea/*
+hopeps_bank_email_backend/.idea/

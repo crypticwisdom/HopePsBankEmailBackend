@@ -8,6 +8,7 @@ SECRET_KEY = '^-gcdl5u%c41=tz)$-k&if@)ofdmqnolz_5*$^x&%+8%0i-4!!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ["hopepsbank.com", "www.hopepsbank.com", "hopepsbank.com", "127.0.0.1", "localhost", "89.38.135.41", "hopemail.tm-dev.xyz"]
 
 
@@ -29,8 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'service.apps.ServiceConfig',
+
+    # App config
     'rest_framework',
     "corsheaders",
+    "i_gree.apps.IGreeConfig"
 ]
 
 MIDDLEWARE = [
@@ -122,7 +126,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://localhost:8080",
     "https://www.hopepsbank.com",
-    "http://localhost",
+    "http://localhost"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -131,3 +135,9 @@ API_KEY = config("API_KEY", None)
 EMAIL_TO = config("EMAIL_TO", None)
 EMAIL_FROM = config("EMAIL_FROM", None)
 
+
+# NIBSS SETTINGS
+CLIENT_ID = config("CLIENT_ID", None)
+CLIENT_SECRET = config("CLIENT_SECRET", None)
+MY_CALL_BACK = config("MY_CALL_BACK", None)
+IDP_INITIATOR_URL = config("IDP_INITIATOR_URL", None)
