@@ -29,8 +29,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'service.apps.ServiceConfig',
+
+    # App config
     'rest_framework',
     "corsheaders",
+    "i_gree.apps.IGreeConfig"
 ]
 
 MIDDLEWARE = [
@@ -130,3 +133,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 API_KEY = config("API_KEY", None)
 EMAIL_TO = config("EMAIL_TO", None)
 EMAIL_FROM = config("EMAIL_FROM", None)
+
+
+# NIBSS SETTINGS
+CLIENT_ID = config("CLIENT_ID", None)
+CLIENT_SECRET = config("CLIENT_SECRET", None)
+MY_CALL_BACK = config("MY_CALL_BACK", None)
+IDP_INITIATOR_URL = config("IDP_INITIATOR_URL", None)
