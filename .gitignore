@@ -7,3 +7,4 @@ __pycache__/*
 hopeps_bank_email_backend/.idea/
 .idea/
 .idea
+hopeps_bank_email_backend/EmailService.log

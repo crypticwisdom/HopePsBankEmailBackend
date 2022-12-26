@@ -48,26 +48,24 @@ class CallBackURLView(APIView):
             if "code" not in request.GET or not authorization_code:
                 return Response({"data": "Invalid Authorization code"}, status=HTTP_400_BAD_REQUEST)
 
-            to_base64 = base64.b64encode(bytes('cab7a23d-ee0c-4bae-a9bb-8f724f9f63b3:zV1eVtPd5oPvDnVsEs3dxbg3XY6WxZTqPQ7QkKdt', 'utf-8'))
+            to_base64 = base64.b64encode(bytes('cab7a23d-ee0c-4bae-a9bb-8f724f9f63b3:nVszV1eVtPd5oPvDEs3dxbg3XY6WxZTqPQ7QkKdt', 'utf-8'))
             base64_to_str = to_base64.decode('utf-8')
 
             headers = {
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Authorization": f"Basic {base64_to_str}"
             }
+
             data = {
-                "client_id": "cab7a23d-ee0c-4bae-a9bb-8f724f9f63b3",
+                "grant_type": "authorization_code",
                 "code": f"{authorization_code}",
                 "redirect_uri": "https://hopemail.tm-dev.xyz/i-gree/verify",
-                "grant_type": "authorization_code",
+                "client_id": "cab7a23d-ee0c-4bae-a9bb-8f724f9f63b3"
             }
 
             exchange_auth_code = requests.post(url="https://idsandbox.nibss-plc.com.ng/oxauth/restv1/token",
                                                headers=headers, data=data)
 
-
-            # print(authorization_code, request.GET)
-
-            return Response({"data": f"{request.GET} || request: {exchange_auth_code} request_code {exchange_auth_code.status_code} :: request_text {exchange_auth_code.text}"})
+            return Response({"data": f" Authorization Code: {authorization_code} ||| BASIC encoded-{to_base64} str-{base64_to_str} |||| {request.GET} || request: {exchange_auth_code} request_code {exchange_auth_code.status_code} :: request_text {exchange_auth_code.text}"})
         except (Exception, ) as err:
             return Response({"detail": f"{err}"}, status=HTTP_400_BAD_REQUEST)
