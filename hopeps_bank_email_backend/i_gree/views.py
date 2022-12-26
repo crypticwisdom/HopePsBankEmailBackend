@@ -1,8 +1,10 @@
+import requests
 from rest_framework.views import APIView
 import http.client
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from django.conf import settings
+import base64
 
 # Create your views here.
 # DOCUMENTATION: https://nibss.atlassian.net/wiki/external/1057980425/ZDZkMTlkMjFiMzAxNGY0MWFhN2Y3YWZhYTgyNTQwY2E
@@ -41,13 +43,31 @@ class CallBackURLView(APIView):
 
     def get(self, request):
         try:
-            print(request.GET)
-            # authorization_code = request.GET.get("code", None)
-            # if "code" not in request.GET or not authorization_code:
-            #     return Response({"data": "Invalid Authorization code"}, status=HTTP_400_BAD_REQUEST)
+
+            authorization_code = request.GET.get("code", None)
+            if "code" not in request.GET or not authorization_code:
+                return Response({"data": "Invalid Authorization code"}, status=HTTP_400_BAD_REQUEST)
+
+            to_base64 = base64.b64encode(bytes('cab7a23d-ee0c-4bae-a9bb-8f724f9f63b3:zV1eVtPd5oPvDnVsEs3dxbg3XY6WxZTqPQ7QkKdt', 'utf-8'))
+            base64_to_str = to_base64.decode('utf-8')
+
+            headers = {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": f"Basic {base64_to_str}"
+            }
+            data = {
+                "client_id": "cab7a23d-ee0c-4bae-a9bb-8f724f9f63b3",
+                "code": f"{authorization_code}",
+                "redirect_uri": "https://hopemail.tm-dev.xyz/i-gree/verify",
+                "grant_type": "authorization_code",
+            }
+
+            exchange_auth_code = requests.post(url="https://idsandbox.nibss-plc.com.ng/oxauth/restv1/token",
+                                               headers=headers, data=data)
+
 
             # print(authorization_code, request.GET)
-            return Response({"data": f"{request.GET}"})
+
+            return Response({"data": f"{request.GET} || request: {exchange_auth_code} request_code {exchange_auth_code.status_code} :: request_text {exchange_auth_code.text}"})
         except (Exception, ) as err:
             return Response({"detail": f"{err}"}, status=HTTP_400_BAD_REQUEST)
-
