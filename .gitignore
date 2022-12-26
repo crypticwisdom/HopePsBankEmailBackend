@@ -5,3 +5,5 @@ __pycache__/
 __pycache__/*
 .idea/*
 hopeps_bank_email_backend/.idea/
+.idea/
+.idea
