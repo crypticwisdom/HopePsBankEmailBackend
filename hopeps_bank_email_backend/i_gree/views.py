@@ -1,3 +1,5 @@
+import secrets
+
 import requests
 from rest_framework.views import APIView
 import http.client
@@ -66,6 +68,15 @@ class CallBackURLView(APIView):
             exchange_auth_code = requests.post(url="https://idsandbox.nibss-plc.com.ng/oxauth/restv1/token",
                                                headers=headers, data=data)
 
-            return Response({"data": f" Authorization Code: {authorization_code} ||| BASIC encoded-{to_base64} str-{base64_to_str} |||| {request.GET} || request: {exchange_auth_code} request_code {exchange_auth_code.status_code} :: request_text {exchange_auth_code.text}"})
+            # if exchange_auth_code.status_code == 200:
+            #     access_token = exchange_auth_code.json()
+            #     headers1 = {
+            #         "x-consumer-unique-id": f"02{secrets.token_urlsafe(10)}",
+            #         "x-consumer-custom-id": "cab7a23d-ee0c-4bae-a9bb-8f724f9f63b3"
+            #     }
+            #     requests.post(url="https://apitest.nibss-plc.com.ng/bvnconsent/v1/getPartialDetailsWithBvn", headers=headers1, data=data1)
+            #
+            #     return Response({"data": f" Authorization Code: {authorization_code} ||| BASIC encoded-{to_base64} str-{base64_to_str} |||| {request.GET} || request: {exchange_auth_code} request_code {exchange_auth_code.status_code} :: request_text {exchange_auth_code.text} {exchange_auth_code.text} text-type '{type(exchange_auth_code.text)}' || request_content: {exchange_auth_code.content} content-type'{type(exchange_auth_code.content)}' || request_json '{exchange_auth_code.json()}' -type {type(exchange_auth_code.json())} |||||||||||||||| {exchange_auth_code.json()['access_token']}"})
+            return Response({"data": f" Authorization Code: {authorization_code} ||| BASIC encoded-{to_base64} str-{base64_to_str} |||| {request.GET} || request: {exchange_auth_code} request_code {exchange_auth_code.status_code} :: request_text {exchange_auth_code.text} {exchange_auth_code.text} text-type '{type(exchange_auth_code.text)}' || request_content: {exchange_auth_code.content} content-type'{type(exchange_auth_code.content)}' || request_json '{exchange_auth_code.json()}' -type {type(exchange_auth_code.json())} |||||||||||||||| {exchange_auth_code.json()['access_token']}"})
         except (Exception, ) as err:
             return Response({"detail": f"{err}"}, status=HTTP_400_BAD_REQUEST)
