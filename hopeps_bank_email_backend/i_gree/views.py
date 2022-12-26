@@ -45,9 +45,9 @@ class CallBackURLView(APIView):
             # authorization_code = request.GET.get("code", None)
             # if "code" not in request.GET or not authorization_code:
             #     return Response({"data": "Invalid Authorization code"}, status=HTTP_400_BAD_REQUEST)
-            #
+
             # print(authorization_code, request.GET)
-            return Response({"data": f""})
+            return Response({"data": f"{request.GET}"})
         except (Exception, ) as err:
             return Response({"detail": f"{err}"}, status=HTTP_400_BAD_REQUEST)
 

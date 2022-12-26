@@ -1,5 +1,6 @@
 import os.path
 from pathlib import Path
+import logging
 from decouple import config
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -120,6 +121,56 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+logging.basicConfig(
+    filename='EmailService.log',
+    filemode='a',
+    level=logging.DEBUG,
+    format='[{asctime}] {levelname} {module} {thread:d} - {message}',
+    datefmt='%d-%m-%Y %H:%M:%S',
+    style='{',
+)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[{asctime}] {levelname} {module} {thread:d} - {message}',
+            'style': '{',
+            'datefmt': '%d-%m-%Y %H:%M:%S'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'EmailService.log',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['file'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.server': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
