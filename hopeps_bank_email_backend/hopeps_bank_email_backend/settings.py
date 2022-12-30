@@ -81,6 +81,18 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'middleware_database;',
+#         'USER': 'postgres',
+#         'PASSWORD': 'iamherenow',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -189,6 +201,9 @@ EMAIL_FROM = config("EMAIL_FROM", None)
 
 # NIBSS SETTINGS
 CLIENT_ID = config("CLIENT_ID", None)
-CLIENT_SECRET = config("CLIENT_SECRET", None)
 MY_CALL_BACK = config("MY_CALL_BACK", None)
 IDP_INITIATOR_URL = config("IDP_INITIATOR_URL", None)
+CLIENT_SECRET = config("CLIENT_SECRET", None)
+
+GET_ACCESS_TOKEN_URL = config("GET_ACCESS_TOKEN_URL", None)
+GET_BVN_DETAIL_URL = config("GET_BVN_DETAIL_URL", None)
