@@ -73,25 +73,27 @@ WSGI_APPLICATION = 'hopeps_bank_email_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'middleware_database;',
-#         'USER': 'postgres',
-#         'PASSWORD': 'iamherenow',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
 
+
+DATABASES = {
+    'default': {
+        'ENGINE': config('DATABASE_ENGINE', None),
+        'NAME': config('DATABASE_NAME', None),
+        'USER': config('DATABASE_USER', None),
+        'PASSWORD': config('DATABASE_PASSWORD', None),
+        'HOST': config('DATABASE_HOST', None),
+        'PORT': config('DATABASE_PORT', None),
+    }
+}
+
+# screen shot of the detail and header.
+# showing that we are done with the implementation and we need to move production.
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -207,3 +209,4 @@ CLIENT_SECRET = config("CLIENT_SECRET", None)
 
 GET_ACCESS_TOKEN_URL = config("GET_ACCESS_TOKEN_URL", None)
 GET_BVN_DETAIL_URL = config("GET_BVN_DETAIL_URL", None)
+FRONTEND_REDIRECT_URL = config("FRONTEND_REDIRECT_URL", None)
