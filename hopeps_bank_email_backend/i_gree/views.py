@@ -100,4 +100,4 @@ class CallBackURLHandlerView(APIView):
             return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={error_message}")
 
         except (Exception, ) as err:
-            return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={err}")
+            return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={err}&msg={msg}&response={response['first_name']}")
