@@ -78,15 +78,15 @@ class CallBackURLHandlerView(APIView):
                                          f"and message - '{get_bvn_details.text}'."
                     return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={error_message}")
 
-                response = get_bvn_details.json()
+                response = get_bvn_details.json()[0]
 
                 # Save user's detail
-                session = IdpUserSessionModel.objects.create(
-                    unique_id=unique_id, first_name=response[0]['first_name'], surname=response[0]['surname'],
-                    middle_name=response[0]['middle_name'], enroll_user_name=response[0]['enroll_user_name'],
-                    authorization_code=encrypt_text(authorization_code), access_token=encrypt_text(access_token),
-                    status="completed"
-                )
+                # session = IdpUserSessionModel.objects.create(
+                #     unique_id=unique_id, first_name=response['first_name'], surname=response['surname'],
+                #     middle_name=response['middle_name'], enroll_user_name=response['enroll_user_name'],
+                #     authorization_code=encrypt_text(authorization_code), access_token=encrypt_text(access_token),
+                #     status="completed"
+                # )
                 msg: str = ""
                 for key, value in response[0]:
                     msg += f"{key}={value}&"
