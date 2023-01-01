@@ -78,26 +78,29 @@ class CallBackURLHandlerView(APIView):
                                          f"and message - '{get_bvn_details.text}'."
                     return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={error_message}")
 
-                response: dict = get_bvn_details.json()[0]
+                response = get_bvn_details.json()[0]
 
                 # Save user's detail
-                # session = IdpUserSessionModel.objects.create(
-                #     unique_id=unique_id, first_name=response['first_name'], surname=response['surname'],
-                #     middle_name=response['middle_name'], enroll_user_name=response['enroll_user_name'],
-                #     authorization_code=encrypt_text(authorization_code), access_token=encrypt_text(access_token),
-                #     status="completed"
-                # )
+                session = IdpUserSessionModel.objects.create(
+                    unique_id=unique_id, first_name=response['first_name'], surname=response['surname'],
+                    middle_name=response['middle_name'], enroll_user_name=response['enroll_user_name'],
+                    authorization_code=encrypt_text(authorization_code), access_token=encrypt_text(access_token),
+                    status="completed"
+                )
                 msg: str = ""
-                for key, value in response.items():
+                y = "sa"
+                t = type(response)
+                for key, value in response:
                     msg += f"{key}={value}&"
+                    y="reee"
 
                 # Remove the last '&' at the end of the message
                 msg = msg[:len(msg) - 1]
-                return redirect(f"{settings.FRONTEND_REDIRECT_URL}data?{msg}")
+                return redirect(f"{settings.FRONTEND_REDIRECT_URL}?{msg}")
 
             error_message: str = f"An error occurred while exchanging an Authorization Code for an Access Token. Response " \
                           f"returned a status_code - {exchange_auth_code.status_code} with message - {exchange_auth_code.text}"
             return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={error_message}")
 
         except (Exception, ) as err:
-            return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={err}")
+            return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={err}&msg={msg}&response={response['first_name']}&y={y}&type={t}")
