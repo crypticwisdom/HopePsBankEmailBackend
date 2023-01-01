@@ -90,8 +90,8 @@ class CallBackURLHandlerView(APIView):
                 msg: str = ""
                 y = "sa"
                 t = type(response)
-
-                for key, value in response:
+                response.pop("face_image")
+                for key, value in response.items():
                     msg += f"{key}={value}&"
                     y="reee"
 
