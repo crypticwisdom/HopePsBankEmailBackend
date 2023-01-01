@@ -89,9 +89,11 @@ class CallBackURLHandlerView(APIView):
                 # )
                 msg: str = ""
                 y = "sa"
+                t = type(response)
                 for key, value in response:
                     msg += f"{key}={value}&"
                     y="reee"
+
                 # Remove the last '&' at the end of the message
                 msg = msg[:len(msg) - 1]
                 return redirect(f"{settings.FRONTEND_REDIRECT_URL}?{msg}")
@@ -101,4 +103,4 @@ class CallBackURLHandlerView(APIView):
             return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={error_message}")
 
         except (Exception, ) as err:
-            return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={err}&msg={msg}&response={response['first_name']}&y={y}")
+            return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={err}&msg={msg}&response={response['first_name']}&y={y}&type={t}")
