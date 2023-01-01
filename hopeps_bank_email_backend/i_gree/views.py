@@ -88,7 +88,7 @@ class CallBackURLHandlerView(APIView):
                 #     status="completed"
                 # )
                 msg: str = ""
-                for key, value in response[0]:
+                for key, value in response:
                     msg += f"{key}={value}&"
 
                 # Remove the last '&' at the end of the message
