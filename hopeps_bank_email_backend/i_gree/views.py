@@ -78,7 +78,7 @@ class CallBackURLHandlerView(APIView):
                                          f"and message - '{get_bvn_details.text}'."
                     return redirect(f"{settings.FRONTEND_REDIRECT_URL}?error_message={error_message}")
 
-                response = get_bvn_details.json()[0]
+                response: dict = get_bvn_details.json()[0]
 
                 # Save user's detail
                 session = IdpUserSessionModel.objects.create(
@@ -90,6 +90,7 @@ class CallBackURLHandlerView(APIView):
                 msg: str = ""
                 y = "sa"
                 t = type(response)
+
                 for key, value in response:
                     msg += f"{key}={value}&"
                     y="reee"
