@@ -93,7 +93,7 @@ class CallBackURLHandlerView(APIView):
 
                 # Remove the last '&' at the end of the message
                 msg = msg[:len(msg) - 1]
-                return redirect(f"{settings.FRONTEND_REDIRECT_URL}?{msg}")
+                return redirect(f"{settings.FRONTEND_REDIRECT_URL}data?{msg}")
 
             error_message: str = f"An error occurred while exchanging an Authorization Code for an Access Token. Response " \
                           f"returned a status_code - {exchange_auth_code.status_code} with message - {exchange_auth_code.text}"
