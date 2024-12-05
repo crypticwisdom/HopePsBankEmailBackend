@@ -18,9 +18,9 @@ def send_mail(api_key, content):
 
         sg = SendGridAPIClient(api_key)
         response = sg.send(message)
-        # print(response.status_code)
-        # print(response.body)
-        # print(response.headers)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
     except (Exception, ) as e:
         print(e)
         return False, f"{e}"

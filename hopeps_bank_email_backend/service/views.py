@@ -34,13 +34,11 @@ class SendEmailView(APIView):
                     </b>
                 </div>
             """
-            print("got here ....")
             success, msg = send_mail(api_key=settings.API_KEY, content=content)
-            print("came out clean ....")
             if success:
                 return Response({"detail": f"Email Sent"})
             else:
-                return Response({"detail": f"Email Sent"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"detail": msg}, status=status.HTTP_400_BAD_REQUEST)
 
         except (Exception,) as err:
             return Response({"detail": f"{err}"})
